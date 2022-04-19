@@ -43,10 +43,10 @@ function startConv() {
         
         var client = rrendClientFromList();
         cStart.innerHTML = "<div id='" + date + "''>" + `${day}-${month}-${year} ,${hour}:${minute}` + "</div>";
-        cCity.innerHTML =  `<option value='city' >${client[3] }</option>`;
-        cGender.innerHTML = `<option value='gender'>${client[5] }</option>`;
-        cAge.innerHTML = `<option value='age'>${ getAge(client[4]) }</option>` ;
-        cPrevCalls.innerHTML = `<option value='prevCalls'>${client[6] }</option>`;
+        cCity.innerHTML =  "<div id='" + client[3] + "''>" +`${client[3] }` +"</option>";
+        cGender.innerHTML = "<div id='" + client[5] + "''>" +`${client[5] }` +"</option>"; //`<option value='gender'>${client[5] }</option>`;
+        cAge.innerHTML = "<div id='" + getAge(client[4]) + "''>" +`${ getAge(client[4])  }` +"</option>";//`<option value='age'>${ getAge(client[4]) }</option>` ;
+        cPrevCalls.innerHTML = "<div id='" + client[6] + "''>" +`${client[6] }` +"</option>";//`<option value='prevCalls'>${client[6] }</option>`;
         cProduct.innerHTML = "<select><option value='internet'>Internet</option><option value='cableTV'>Cable TV</option><option value='cellular'>Cellular</option><option value='all'>All</option></select>";
         cTopic.innerHTML = "<select><option value='joining'>Joining</option><option value='service'>Service</option><option value='complaint'>Complaint</option><option value='disconnection'>Disconnection</option></select>";
         
@@ -63,13 +63,14 @@ function reportEndCall(row) {
         document.getElementById("total").value = (--totalCalls) + "";
     }
 
+
     //msg to send kafka
     var message = {};
     message.id = row.cells[0].getElementsByTagName('div')[0].id;
-    message.city = row.cells[1].getElementsByTagName('option').value;
-    message.gender = row.cells[2].getElementsByTagName('option').value;
-    message.age = row.cells[3].getElementsByTagName('option').value;
-    message.prevCalls = (row.cells[4].getElementsByTagName('option').value );    
+    message.city = row.cells[1].getElementsByTagName('div')[0].id;
+    message.gender = row.cells[2].getElementsByTagName('div')[0].id;
+    message.age = row.cells[3].getElementsByTagName('div')[0].id;
+    message.prevCalls = (row.cells[4].getElementsByTagName('div')[0].id );    
     message.product = row.cells[5].getElementsByTagName('select')[0].value;
     message.topic = row.cells[6].getElementsByTagName('select')[0].value;
     message.totalTime = (parseInt(Date.now()) - parseInt(message.id)) / 1000; // seconds
