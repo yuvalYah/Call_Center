@@ -1,7 +1,7 @@
 var num = 0;
-
 function initSocket() {
-    socket = io.connect("http://localhost:3000");
+    console.log("init socket")
+    socket = io.connect();
 }
 
 function sendMessage(total) {
@@ -10,6 +10,8 @@ function sendMessage(total) {
         num = parseInt(total);
     }
 }
+
+//caculate age acording birth date
 function getAge(dateString) {
     var today = new Date();
     var birthDate = new Date(dateString);
@@ -22,6 +24,7 @@ function getAge(dateString) {
     return age;
 }
 
+//user press in view sysA "answer call" we call this function
 function startConv() {
     if (num > 0) {
         var tr = document.getElementById('openConversations').insertRow();
@@ -53,12 +56,14 @@ function startConv() {
     else alert("Set number of total waiting calls")
 }
 
+//when finish the call end press "END" button we came here 
 function reportEndCall(row) {
     var totalCalls = parseInt(document.getElementById("total").value) || 0;
     if (parseInt(totalCalls) > 0) {
         document.getElementById("total").value = (--totalCalls) + "";
     }
 
+    //msg to send kafka
     var message = {};
     message.id = row.cells[0].getElementsByTagName('div')[0].id;
     message.city = row.cells[1].getElementsByTagName('option').value;
@@ -72,9 +77,9 @@ function reportEndCall(row) {
     //need to update prev calls
 
     socket.emit("callDetails", message);
-    deleteRow(row);
+    deleteRow(row);    
 }
-
+//delete row
 function deleteRow(row) {
     var i = row.rowIndex;
     document.getElementById('openConversations').deleteRow(i);

@@ -2,6 +2,7 @@ const express = require('express')
 const mysql = require('mysql')
 const app = express()
 const port = 3000
+
 var c1=[111111111,"Yuval" , "Yahod" , "Petah Tikva" , "24-06-1998", "Female" , "0"];
 var c2=[222222222,"Maayan" , "Sulimani" , "Rehovot" , "24-05-1995", "Female" , "0"];
 var c3=[333333333,"Dvir" , "Cohen" , "Rehovot" , "14-02-1999", "Male" , "0"];

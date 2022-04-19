@@ -1,0 +1,25 @@
+{
+  "name": "subsystemb",
+  "version": "1.0.0",
+  "description": "when enter call to call center, after finish the call frome sysA go to kafka and enter the call to redis, redis save 24h and show to the screen calls deteils  and graph. ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaayanZeevi/Call_Center.git#master"
+  },
+  "author": "Yuval & Maayan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaayanZeevi/Call_Center/issues"
+  },
+  "homepage": "https://github.com/MaayanZeevi/Call_Center/tree/master#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "node-rdkafka": "^2.12.0",
+    "socket.io": "^4.4.1"
+  }
+}

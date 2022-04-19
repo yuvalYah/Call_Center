@@ -1,5 +1,5 @@
 const io = require("socket.io");
-const ioServerRedis = io(6063);
+const ioServerRedis = io(1234);
 const kafka = require('./KafkaProducer.js');
 
 ioServerRedis.on("connection", (socket) => {
@@ -13,7 +13,7 @@ ioServerRedis.on("connection", (socket) => {
 
     socket.on("callDetails", (msg) => { 
         console.log(msg);
-        kafka.publish(msg, "Mongo");
-        kafka.publish(msg, "Redis");
+        kafka.publish(msg, "e3c3vg85-defult");
+        // kafka.publish(msg, "Redis");
     });
 });
