@@ -16,7 +16,8 @@ const kafkaConf = {
 };
 
 const prefix = "e3c3vg85-";
-const topic = `${prefix}default`;
+const topicB = `${prefix}default`;
+const topicC = `${prefix}new`;
 const producer = new Kafka.Producer(kafkaConf);
 
 const genMessage = m => new Buffer.alloc(m.length,m);
@@ -26,9 +27,10 @@ producer.on("ready", function(arg) {
 });
 producer.connect();
 
-module.exports.publish= function(msg)
+module.exports.publish= function(msg, topica)
 {   
   m=JSON.stringify(msg);
-  producer.produce(topic, -1, genMessage(m), uuid.v4());  
+  producer.produce(topicB, -1, genMessage(m), uuid.v4());  
+  producer.produce(topicC, -1, genMessage(m), uuid.v4()); 
   
 }

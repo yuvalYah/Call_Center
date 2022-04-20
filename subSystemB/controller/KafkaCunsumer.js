@@ -13,7 +13,7 @@ const kafkaConf = {
 };
 
 const prefix = "e3c3vg85-";
-const topic = `${prefix}new`;
+const topic = `${prefix}default`;
 const producer = new Kafka.Producer(kafkaConf);
 
 const genMessage = m => new Buffer.alloc(m.length,m);
@@ -23,14 +23,14 @@ const consumer = new Kafka.KafkaConsumer(kafkaConf);
 consumer.connect();
 
 consumer.on("ready", function(arg) {
-  console.log(`mongoDB consumer consuming`);
+  console.log(`Redis consumer consuming`);
   consumer.subscribe([topic]);
   consumer.consume();
 });
 consumer.on("data", function(m) {
   console.log("data : ");
   console.log(m.value.toString());
-  //upload to mongo
+  //upload to redis
 });
 
 module.exports.consumer = consumer;
