@@ -27,10 +27,10 @@ producer.on("ready", function(arg) {
 });
 producer.connect();
 
-module.exports.publish= function(msg, topica)
+module.exports.publish= function(msg, topic)
 {   
   m=JSON.stringify(msg);
-  producer.produce(topicB, -1, genMessage(m), uuid.v4());  
-  producer.produce(topicC, -1, genMessage(m), uuid.v4()); 
+  producer.produce(topic, -1, genMessage(m), uuid.v4());  
+  // producer.produce(topicB, -1, genMessage(m), uuid.v4()); 
   
 }

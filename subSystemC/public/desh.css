@@ -1,0 +1,48 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+* { box-sizing: border-box;}
+
+.form-inline {  
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.form-inline label {
+    margin: 5px 10px 5px 0;
+  
+
+}
+
+.form-inline input {
+    vertical-align: middle;
+    width: 100px;
+    height: 40px;
+    margin: 5px 10px 5px 0;
+    padding: 10px ;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ddd;
+}
+
+.form-inline button {
+  padding: 10px 20px;
+  background-color: rgba(179, 16, 154, 0.806);
+  border: 1px solid #ddd;
+  color: bleack;
+  cursor: pointer;
+}
+
+.form-inline button:hover {
+  background-color: rgb(237, 159, 198);
+}
+
+@media (max-width: 100px) {
+  .form-inline input {
+    margin: 10px 0;
+    
+  }
+  
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -7,6 +7,9 @@ const port = 3000
 //------------ kafka------------
 const kafka = require('./controller/kafkaProduce');
 const bodyParser = require('body-parser');
+const prefix = "e3c3vg85-";
+const topicB = `${prefix}default`;
+const topicC = `${prefix}new`;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,17 +36,14 @@ io.on("connection", (socket) => {
     socket.on("totalWaitingCalls", (msg) => { console.log(msg.totalWaiting) });
     socket.on("callDetails", (msg) => {
         console.log(msg);
-        kafka.publish(msg , "Mongo");
+        kafka.publish(msg , topicB);
+        kafka.publish(msg , topicC);
         // kafka.publish(msg);  
     });
 });
 
 
 //------------------- kafka -----------
-/* Kafka Producer Configuration */
-
-//
-//const client1 = new kafka.KafkaClient({kafkaHost: "localhost:9092"});
 
 
 

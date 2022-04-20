@@ -1,5 +1,6 @@
 const uuid = require("uuid");
 const Kafka = require("node-rdkafka");
+const mongo = require("../models/MongoDB");
 
 const kafkaConf = {
       "group.id": "call center",
@@ -31,6 +32,7 @@ consumer.on("data", function(m) {
   console.log("data : ");
   console.log(m.value.toString());
   //upload to mongo
+  mongo.insertToMongo(m.value.toString());
 });
 
 module.exports.consumer = consumer;

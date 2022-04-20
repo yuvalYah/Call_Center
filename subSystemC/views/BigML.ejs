@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="desh.css">
+</head>
+<body>
+
+<h2>Predic Conversation Topic</h2>
+<p>Please enter call details and click "Predict" to predict the type of call.</p>
+<p>To build a new model, please click "Build Model".</p>
+<body style="background-color:rgb(245, 211, 220);">
+    
+    
+<form class="form-inline " action="/action_page.php" >
+    <label for="city">City:</label>
+    <input type="text" id="city" placeholder="Enter city" name="city">
+    
+    <label for="gender">Gender:</label>
+    <input type="text" id="gender" placeholder="Enter gender" name="gender">
+    
+    <label for="age">Age:</label>
+    <input type="number" id="age" placeholder="Enter age" name="age">
+    
+    <label for="prevCalls">Previous Calls:</label>
+    <input type="number" id="prevCalls" placeholder="Enter Previous Calls" name="prevCalls">
+    
+    <label for="mood">Mood:</label>
+        <select id="mood"  placeholder="Enter age" name="mood">
+                <option value='holiday'>Holidays</option>
+                <option value='vacations'>Vacations</option>
+                <option value='regular day'>Regular day</option>
+        </select>
+    
+  
+    <label for="space">     </label>
+    <button  type="button" onclick="predict()">Predict</button>
+    <label for="space">     </label>
+
+    <button  type="button" onclick="buildModel()">Build Model</button>
+
+
+    
+</form>
+
+</body>
+</html>
