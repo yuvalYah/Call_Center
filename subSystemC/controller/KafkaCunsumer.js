@@ -1,6 +1,8 @@
 const uuid = require("uuid");
 const Kafka = require("node-rdkafka");
-const mongo = require("../models/MongoDB");
+const bigml = require("bigml");
+const mongo = require("../models/ConnectMongoDB");
+const bigmlcon  = require("../models/BigML");
 
 const kafkaConf = {
       "group.id": "call center",
@@ -28,11 +30,28 @@ consumer.on("ready", function(arg) {
   consumer.subscribe([topic]);
   consumer.consume();
 });
+
 consumer.on("data", function(m) {
   console.log("data : ");
   console.log(m.value.toString());
-  //upload to mongo
-  mongo.insertToMongo(m.value.toString());
+
+  var temp = JSON.parse(m.value.toString());// parse from string to objct
+  var toMongo = {};
+  toMongo.city = temp.city;
+  toMongo.gender = temp.gender;
+  toMongo.age = temp.age;
+  toMongo.prevCalls = temp.prevCalls;
+  //time in year
+  toMongo.product = temp.product;
+  toMongo.topic = temp.topic;
+  toMongo.hour = temp.hour;
+  toMongo.minute = temp.minute;
+  mongo.insertToMongo(toMongo);//add to mongo
+  // mongo.wirteMongoToCSV();
+  // bigmlcon.buildModel();
+ 
 });
 
+
 module.exports.consumer = consumer;
+// module.exports.myBuild = myBuild;
