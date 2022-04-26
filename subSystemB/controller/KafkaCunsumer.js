@@ -1,5 +1,6 @@
 const uuid = require("uuid");
 const Kafka = require("node-rdkafka");
+const redisHandler = require("../models/redisHandler");
 
 const kafkaConf = {
       "group.id": "call center",
@@ -27,10 +28,22 @@ consumer.on("ready", function(arg) {
   consumer.subscribe([topic]);
   consumer.consume();
 });
-consumer.on("data", function(m) {
-  console.log("data : ");
-  console.log(m.value.toString());
+
+consumer.on("data", function(message) {
+    console.log("data : ");
+    console.log(message.value.toString());
   //upload to redis
+    var temp = JSON.parse(message.value.toString());// parse from string to objct
+    var toRedis = {};
+    toRedis.city = temp.city;
+    toRedis.gender = temp.gender;
+    toRedis.age = temp.age;
+    toRedis.prevCalls = temp.prevCalls;
+    //time in year
+    toRedis.product = temp.product;
+    toRedis.topic = temp.topic;
+    redisHandler.sendData(message.value.toString());
+
 });
 
 module.exports.consumer = consumer;

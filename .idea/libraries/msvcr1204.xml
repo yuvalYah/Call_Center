@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="msvcr1204">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/subSystemC/node_modules/node-rdkafka/deps/librdkafka/packaging/nuget/common/p-common__plat-windows__arch-x64__bldtype-Release/msvcr120.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
