@@ -1,38 +1,7 @@
-_id,city,gender,age,prevCalls,product,topic
-62612bc1b06232b5578b441a,Rehovot,Female,26,0,internet,joining
-62665b2bd42d4b636458f070,Rehovot,Male,23,0,internet,joining
-62665b2cd42d4b636458f071,Rehovot,Male,23,0,internet,joining
-62665b56d42d4b636458f072,Rehovot,Male,23,0,cableTV,disconnection
-62665b56d42d4b636458f073,Rehovot,Male,23,0,cableTV,disconnection
-62665c41d42d4b636458f074,Petah Tikva,Female,23,0,cellular,service
-62665c41d42d4b636458f075,Petah Tikva,Female,23,0,cellular,service
-62665c41d42d4b636458f076,Rehovot,Male,23,0,cellular,complaint
-62665c42d42d4b636458f077,Rehovot,Male,23,0,cellular,complaint
-62665c42d42d4b636458f078,Rehovot,Male,23,0,internet,joining
-62665c42d42d4b636458f079,Rehovot,Male,23,0,internet,joining
-62665c43d42d4b636458f07a,Rehovot,Male,23,0,cableTV,disconnection
-62665c43d42d4b636458f07b,Rehovot,Male,23,0,cableTV,disconnection
-62665c43d42d4b636458f07c,Petah Tikva,Female,23,0,cellular,service
-62665c43d42d4b636458f07d,Petah Tikva,Female,23,0,cellular,service
-62665c44d42d4b636458f07e,Rehovot,Male,23,0,cableTV,complaint
-62665c44d42d4b636458f07f,Rehovot,Male,23,0,cableTV,complaint
-62665c44d42d4b636458f080,Petah Tikva,Female,23,0,all,complaint
-62665c44d42d4b636458f081,Petah Tikva,Female,23,0,all,complaint
-626666109bce320977efa582,Rehovot,Female,26,0,internet,joining
-6266665505049ee97b04d1e1,Rehovot,Female,26,0,internet,joining
-6267959e9fd2963ee54f3f05,Petah Tikva,Female,23,0,internet,joining
-62679612dd1a63aeb4fb65c9,Rehovot,Male,23,0,internet,joining
-62679619dd1a63aeb4fb65cd,Petah Tikva,Female,23,0,cableTV,joining
-62679619dd1a63aeb4fb65ce,Petah Tikva,Female,23,0,cableTV,joining
-6267961cdd1a63aeb4fb65cf,Rehovot,Male,23,0,cableTV,joining
-6267961cdd1a63aeb4fb65d0,Rehovot,Male,23,0,cableTV,joining
-62679659dd1a63aeb4fb65d2,Petah Tikva,Female,23,0,internet,joining
-62679659dd1a63aeb4fb65d1,Petah Tikva,Female,23,0,internet,joining
-6267965edd1a63aeb4fb65d4,Rehovot,Female,26,0,cellular,complaint
-6267965edd1a63aeb4fb65d3,Rehovot,Female,26,0,cellular,complaint
-6267967bdd1a63aeb4fb65d5,Rehovot,Female,26,0,internet,complaint
-6267967bdd1a63aeb4fb65d6,Rehovot,Female,26,0,internet,complaint
-626797d146d6948f921c305b,Rehovot,Female,26,0,cellular,service
-62679f08cf1c3a9c6ad163e1,Rehovot,Female,26,0,internet,joining
-6267b6e885c01df98a883d5b,Rehovot,Female,26,0,cellular,service
-6267b7b3cfa195ffbccc6179,Rehovot,Male,23,0,internet,joining
+_id,city,gender,age,prevCalls,mood,product,topic
+626be58bb53bc47873e2b0d3,Rehovot,Male,23,0,vacations,internet,joining
+626be595b53bc47873e2b0d4,Rehovot,Male,23,0,vacations,internet,joining
+626be5a9b53bc47873e2b0d5,Rehovot,Male,23,0,vacations,internet,joining
+626be62fb53bc47873e2b0d6,Petah Tikva,Female,23,0,holiday,cableTV,complaint
+626be65eb53bc47873e2b0d7,Rehovot,Female,26,0,holiday,internet,joining
+626be7c06fa74a84d76065c1,Rehovot,Female,26,0,,all,disconnection

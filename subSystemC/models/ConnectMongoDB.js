@@ -20,10 +20,7 @@ async function main() {
     }
 }
 
-// main().catch(console.error);
 
-
-//insert docoment to mongo 
 async function insertToMongo(msg){
     try{
         await client.connect();
@@ -36,12 +33,11 @@ async function insertToMongo(msg){
 };
 
 async function wirteMongoToCSV(){
-    // alert("in wirteMongoToCSV"); 
     await client.connect();
      
     await collection.find({}).toArray((err, data) => {
         if (err) throw err;
-        console.log(data);
+
         const ws = fs.createWriteStream("callData.csv");
         fastcsv.write(data, { headers: true }).on("finish", function() {
             console.log("Write to callData.csv successfully!");

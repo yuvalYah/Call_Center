@@ -4,60 +4,37 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
         <link rel="stylesheet" href="desh.css">
         
-        <script src="../models/ConnectMongoDB.js"></script>
-        <script src="../models/BigML"></script>
-        <script src="../controller/KafkaCunsumer"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-        <script>
-            // const mongo = require("../models/ConnectMongoDB");
-            // const bigmlcon  = require("../models/BigML");
-            // function myBuild(){
-            //     alert("dfd");
-            //     mongo.wirteMongoToCSV();
-            //     bigmlcon.buildModel();
-
-            // }
-            var bigml = require('bigml');
-
-            const { cache } = require("ejs");
-            var connection = new bigml.BigML('yuvalpe000','2062dfd3ebbe871584a1e669e15518f40bf0118d')
-
-            function initSocket() {
-                console.log("init socket")
-                socket = io.connect();
-            }
-
-            //to biuld new model
-            function myBuild(){
-               
-                // await mongo.wirteMongoToCSV();
-                
-                var source = new bigml.Source(connection);
-                source.create('./callData.csv', function(error, sourceInfo) {
-                if (!error && sourceInfo) {
-                    var dataset = new bigml.Dataset(connection);
-                    dataset.create(sourceInfo, function(error, datasetInfo) {
-                    if (!error && datasetInfo) {
-                        var model = new bigml.Model(connection);
-                        model.create(datasetInfo, function (error, modelInfo) {
-                        if (!error && modelInfo) {
-                            var prediction = new bigml.Prediction(connection);
-                            prediction.create(modelInfo, {'petal length': 1},function(error, prediction) { console.log(JSON.stringify(prediction));console.log(prediction.code)}); 
-                        }
-                        });
-                    }
-                    });
-                }
-                });
-                // alert("in wirteMongoToCSV");  
-                
-            }
-            // buildModel();
-        </script>
+        <script src="./ConnectMongoDB.js"></script>
+        <script src="./BigML.js"></script>
+        <script src="./KafkaCunsumer.js"></script>
         
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        
+        <script>        
+
+        function details(){
+           
+            //Take the user var
+            var city = document.getElementById("city").value;
+            var gender = document.getElementById("gender").value;
+            var age =  document.getElementById("age").value;
+            var prev = document.getElementById("prevCalls").value;
+            var prod = document.getElementById("product").value;
+            var mood = document.getElementById("mood").value
+
+            window.location.href='http:/'+'/'+'localhost:3002/predictCall/'+city+'/'
+                +gender+'/'+age+'/'+prev+'/'+prod+'/'+mood;
+
+            //Delete from textbox
+            document.getElementById("city").value = "";
+            document.getElementById("gender").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("prevCalls").value = "";
+            document.getElementById("product").value = "";
+            
+        }</script>
     </head>
 
     <body class="p-3 mb-2 bg-danger text-white" data-gr-c-s-loaded="true" onload="initSocket()">
@@ -68,7 +45,7 @@
         <body style="background-color:rgb(245, 211, 220);">
         
         
-        <form class="form-inline " action="/action_page.php" >
+        <form name="bigmlp" class="form-inline " action="/action_page.php" >
             <label for="city">City:</label>
             <input type="text" id="city" placeholder="Enter city" name="city">
             
@@ -81,6 +58,9 @@
             <label for="prevCalls">Previous Calls:</label>
             <input type="number" id="prevCalls" placeholder="Enter Previous Calls" name="prevCalls">
             
+            <label for="product">Product:</label>
+            <input type="test" id="product" placeholder="Enter product" name="product">
+            
             <label for="mood">Mood:</label>
                 <select id="mood"  placeholder="Enter age" name="mood">
                         <option value='holiday'>Holidays</option>
@@ -90,10 +70,10 @@
             
         
             <label for="space">     </label>
-            <button  type="button" onclick="predict()">Predict</button>
+            <button  type="button" onclick="details()">Predict</button>
             <label for="space">     </label>
 
-            <button  type="button" onclick="myBuild()" value="Build Model" class="input-group-text" >Build Model</button>
+            <button  type="button" onclick="location.href='http:/'+'/'+'localhost:3002/buildModel'" value="Build Model" class="input-group-text" >Build Model</button>
             
 
             

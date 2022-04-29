@@ -74,14 +74,7 @@ function reportEndCall(row) {
     message.product = row.cells[5].getElementsByTagName('select')[0].value;
     message.topic = row.cells[6].getElementsByTagName('select')[0].value;
     message.totalTime = (parseInt(Date.now()) - parseInt(message.id)) / 1000; // seconds
-
-    const date = Date.now();
-    const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit', hour: 'numeric', minute: 'numeric' })
-    const [{ value: month }, , { value: day }, , { value: year }, , { value: hour }, , { value: minute }] = dateTimeFormat.formatToParts(date)
-    
-    message.hour = hour;
-    message.minute = minute;
-    //need to update prev calls
+    message.mood =  document.getElementById("mood").value;
 
     socket.emit("callDetails", message);
     deleteRow(row);    

@@ -41,14 +41,11 @@ consumer.on("data", function(m) {
   toMongo.gender = temp.gender;
   toMongo.age = temp.age;
   toMongo.prevCalls = temp.prevCalls;
-  //time in year
+  toMongo.mood = temp.mood;
   toMongo.product = temp.product;
   toMongo.topic = temp.topic;
-  toMongo.hour = temp.hour;
-  toMongo.minute = temp.minute;
+  
   mongo.insertToMongo(toMongo);//add to mongo
-  // mongo.wirteMongoToCSV();
-  // bigmlcon.buildModel();
  
 });
 
