@@ -30,10 +30,10 @@ app.get('/data.js', (req, res) => res.sendFile('models/data.js', { root: __dirna
 //------------ Socket.io ----------------
 io.on("connection", (socket) => {
     console.log("new user connected");
-    socket.on("totalWaitingCalls", (msg) => { console.log(msg.totalWaiting) });
+    socket.on("totalWaitingCalls", (msg) => { kafka.publishTotalCalls(msg) });
     socket.on("callDetails", (msg) => {
         console.log(msg);
-        kafka.publish(msg); 
+        kafka.publishCallDetails(msg);
     });
 });
 

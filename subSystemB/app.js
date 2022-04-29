@@ -7,7 +7,7 @@ const kafkaCuns = require('./controller/KafkaCunsumer');
 //--------------ejs---------------------
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
-app.get('/', (req, res) => res.render('BigML'));
+app.get('/', (req, res) => res.render('ShowData'));
 // app.get('/DashboardController.js', (req, res) => res.sendFile('Controller/DashboardController.js', { root: __dirname }));
 // app.get('/Dashboard.css', (req, res) => res.sendFile('Views/Dashboard.css', { root: __dirname }));
 
