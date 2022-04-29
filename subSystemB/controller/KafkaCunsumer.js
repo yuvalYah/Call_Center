@@ -33,16 +33,18 @@ consumer.on("data", function(message) {
     console.log("data : ");
     console.log(message.value.toString());
   //upload to redis
-    var temp = JSON.parse(message.value.toString());// parse from string to objct
-    var toRedis = {};
-    toRedis.city = temp.city;
-    toRedis.gender = temp.gender;
-    toRedis.age = temp.age;
-    toRedis.prevCalls = temp.prevCalls;
-    //time in year
-    toRedis.product = temp.product;
-    toRedis.topic = temp.topic;
+  //   var temp = JSON.parse(message.value.toString());// parse from string to objct
+  //   var toRedis = {};
+  //   toRedis.city = temp.city;
+  //   toRedis.gender = temp.gender;
+  //   toRedis.age = temp.age;
+  //   toRedis.prevCalls = temp.prevCalls;
+  //   //time in year
+  //   toRedis.product = temp.product;
+  //   toRedis.topic = temp.topic;
+
     redisHandler.sendData(message.value.toString());
+    redisHandler.getAllCurrency();
 
 });
 

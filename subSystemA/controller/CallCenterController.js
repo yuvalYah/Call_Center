@@ -1,13 +1,14 @@
-var num = 0;
+var totalWaitingCalls = 0;
+
 function initSocket() {
     console.log("init socket")
     socket = io.connect();
 }
 
-function sendMessage(total) {
+function setTotalWaitingCalls(total) {
     if(parseInt(total) >= 0){
         socket.emit("totalWaitingCalls", parseInt(total));
-        num = parseInt(total);
+        totalWaitingCalls = parseInt(total);
     }
 }
 
@@ -26,7 +27,8 @@ function getAge(dateString) {
 
 //user press in view sysA "answer call" we call this function
 function startConv() {
-    if (num > 0) {
+    if (totalWaitingCalls > 0) {
+        totalWaitingCalls--;
         var tr = document.getElementById('openConversations').insertRow();
         var cStart = tr.insertCell(0);
         var cCity = tr.insertCell(1);
@@ -75,6 +77,8 @@ function reportEndCall(row) {
     message.topic = row.cells[6].getElementsByTagName('select')[0].value;
     message.totalTime = (parseInt(Date.now()) - parseInt(message.id)) / 1000; // seconds
     message.mood =  document.getElementById("mood").value;
+
+    //need to update prev calls
 
     socket.emit("callDetails", message);
     deleteRow(row);    

@@ -5,3 +5,5 @@ _id,city,gender,age,prevCalls,mood,product,topic
 626be62fb53bc47873e2b0d6,Petah Tikva,Female,23,0,holiday,cableTV,complaint
 626be65eb53bc47873e2b0d7,Rehovot,Female,26,0,holiday,internet,joining
 626be7c06fa74a84d76065c1,Rehovot,Female,26,0,,all,disconnection
+626bebd1229aeaff33ccba20,Rehovot,Female,26,0,holiday,internet,joining
+626bebd1229aeaff33ccba21,Petah Tikva,Female,23,0,holiday,internet,joining
