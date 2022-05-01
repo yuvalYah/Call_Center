@@ -4,7 +4,7 @@
   "description": "when enter call to call center, after finish the call frome sysA go to kafka and enter the call to redis, redis save 24h and show to the screen calls deteils  and graph. ",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "node-rdkafka": "^2.12.0",
+    "node-schedule": "^2.1.0",
     "node-uuid": "^1.4.8",
     "redis": "^4.0.6",
     "socket.io": "^4.4.1",

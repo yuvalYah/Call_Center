@@ -7,8 +7,8 @@ function initSocket() {
 
 function setTotalWaitingCalls(total) {
     if(parseInt(total) >= 0){
-        socket.emit("totalWaitingCalls", parseInt(total));
         totalWaitingCalls = parseInt(total);
+        socket.emit("totalWaitingCalls", totalWaitingCalls);
     }
 }
 
@@ -29,6 +29,7 @@ function getAge(dateString) {
 function startConv() {
     if (totalWaitingCalls > 0) {
         totalWaitingCalls--;
+        socket.emit("totalWaitingCalls", totalWaitingCalls);
         var tr = document.getElementById('openConversations').insertRow();
         var cStart = tr.insertCell(0);
         var cCity = tr.insertCell(1);
