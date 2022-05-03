@@ -14,7 +14,7 @@ module.exports = {
     connectToKafka: () => {
 
         const kafkaConf = {
-            "group.id": "call center",
+            "group.id": "System B",
             "metadata.broker.list": "rocket.srvs.cloudkafka.com:9094",//"moped-01.srvs.cloudkafka.com:9094,moped-02.srvs.cloudkafka.com:9094,moped-03.srvs.cloudkafka.com:9094".split(","),
             "socket.keepalive.enable": true,
             "security.protocol": "SASL_SSL",
@@ -45,6 +45,7 @@ module.exports = {
                 if (err) {
                     reject(err);
                 } else {
+                    console.log("kafka connection succesfull")
                     result();
                 }
             }));

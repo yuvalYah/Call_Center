@@ -5,12 +5,21 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="desh.css">
-        
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            socket = io.connect();
+            function initSocket() {
+                //socket is global
+                alert("connected");
+            }
+
+            function sendMessage(total) {
+                socket.emit("totalWaitingCalls", { totalWaiting: total });
+            }
+        </script>
         <script src="./ConnectMongoDB.js"></script>
         <script src="./BigML.js"></script>
         <script src="./KafkaCunsumer.js"></script>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
         
         <script>        
 
