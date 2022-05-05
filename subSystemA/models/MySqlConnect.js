@@ -1,8 +1,3 @@
-const mysql = require('mysql')
-const fs = require('fs');
-let output = "";
-
-
 function initSocket() {
     //socket is global
     socket = io.connect("http://localhost:3000");

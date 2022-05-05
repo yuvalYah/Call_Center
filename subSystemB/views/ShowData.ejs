@@ -1,74 +1,209 @@
 <!DOCTYPE html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>		
-        <title style="color: red;">
-            Dashboard
-        </title>
-    </head>
-    <body onload="initSocket()" class="p-3 mb-2 bg-dark text-white">
-        
-        <h1 style="text-align:center; padding-bottom: 50px; padding-top: 50px;">Dashboard</h1>
-        <div class="container">
-            <div class="row">
-                <div class="col-6 chart">
-                    <canvas id="SnapShotChartTotals" width= "500px" height="400"></canvas>
-                </div>
-                <div class="col-6 chart">
-                    <canvas id="SnapShotChartAvg" width= "500px" height="400"></canvas>
-                  </div>
-            </div>
-            <div class="row" style="padding-top: 30px;">
-                <div class="col-6 chart">
-                  <p style="text-align: center; font: bold;">Number of waiting calls at 5 minutes intervals</p>
-                    <canvas id="WaitingCallsAggregetionChartCanvas" width= "500px" height="220"></canvas>
-                </div>
-                <div class="col-6 chart">
-                  <p style="text-align: center; font: bold;">Waiting times at 5 minutes intervals</p>
-                  <canvas id="WaitingTimeAggregetionChartCanvas" width= "500px" height="220"></canvas>
-              </div>
-            </div>
-            <div class="row" style="padding-top: 50px; padding-bottom: 20px;">
-                <link rel="stylesheet" href="./Dashboard.css">
-                <table class="table table-bordered table-dark border" id="SnapShotTable">
-                    <thead class="AggregetionTableHead">
-                      <tr>
-                        <th scope="col" style="width: 500px;">Time</th>
-                        <th scope="col" style="width: 475px;">Number of waiting calls</th>
-                        <th scope="col" style="width: 500px;">Waiting times</th>
-                      </tr>
-                    </thead>
-                    <tbody class="AggregetionTableBody">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"-->
+    <!--            integrity="sha512-U3hGSfg6tQWADDQL2TUZwdVSVDxUt2HZ6IMEIskuBizSDzoe65K3ZwEybo0JOcEjZWtWY3OJzouhmlGop+/dBg=="-->
+    <!--            crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
 
-                    </tbody>
-                  </table>
-            </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./DataController.js"></script>
+    <script src="./redisController.js"></script>
 
-            <div>
-                <table id="cityTopicsTable" class="table table-bordered table-dark border">
-                    <tr>
-                        <th>City</th>
-                        <th>Number of calls at each city</th>
-                        <th>Topic</th>
-                        <th>Number of calls at each topic</th>
-                    </tr>
-                </table>
-            </div>
-            <div class="row" style="padding-top: 30px;">
-                <div class="col-6 chart">
-                  <p style="text-align: center; font: bold;">Number of calls at each topic.</p>
-                    <canvas id="CallsPerTopicChartCanvas" width= "500px" height="220"></canvas>
-                </div>
-                <div class="col-6 chart">
-                  <p style="text-align: center; font: bold;">Number of calls at each language.</p>
-                  <canvas id="CallsPerLanguageChartCanvas" width= "500px" height="220"></canvas>
-              </div>
-            </div>
+    <script>
+        // var socket = io.connect();
+        // initSocket()
+        // {
+        //     socket.on('totalWaitingCalls', function (msg) {
+        //
+        //         var element = document.getElementById("totalWaitingCallsValue");
+        //         element.innerText = msg;
+        //         xyValues.push({x: 20 , y:msg});
+        //         var element = document.getElementById("WaitingTimeAggregetionChartCanvas");
+        //         element.innerText = 34;
+        //         console.log("socket on newdata");
+        //         console.log("socket on totalWaitingCalls");
+        //
+        //
+        //     });
+        //     socket.on('newdata', function (msg) {
+        //         var element = document.getElementById(msg.districtId);
+        //         element.innerText = msg.value;
+        //         console.log("socket on newdata");
+        //         // document.querySelector('h1').innerHTML = msg
+        //
+        //     })
+        //     socket.on('avgWaitingTime', function (msg) {
+        //         // var element = document.getElementById("WaitingTimeAggregetionChartCanvas");
+        //         // element.innerText = msg;
+        //         // console.log("avgWaitingTime10Min"+ msg);
+        //         document.querySelector('h2').innerHTML = msg;
+        //     })
+        //     socket.on('diconnectionAmount', function (msg) {
+        //         console.log("disconnection amount:+ msg");
+        //     })
+        //     function updateWaitingCallsGraph(chart) {
+        //         chart.options.scales.y = {
+        //             type: 'logarithmic'
+        //         };
+        //         chart.update();
+        //     }
+        //
+        // }
+
+    </script>
+    <title style="color: red;">
+        Dashboard
+    </title>
+</head>
+<body onload="initSocket()" class="p-3 mb-2 bg-dark text-white">
+
+<h1 style="text-align:center; padding-bottom: 50px; padding-top: 50px;">Dashboard</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-6 chart">
+            <canvas id="SnapShotChartTotals" width="500px" height="400"></canvas>
         </div>
-        <script src="./DashboardController.js"></script>
-    </body>
+        <div class="col-6 chart">
+            <canvas id="SnapShotChartAvg" width="500px" height="400"></canvas>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 30px;">
+        <div class="col-6 chart">
+            <p style="text-align: center; font: bold;">Number of waiting calls at 5 minutes intervals</p>
+            <canvas id="WaitingCallsAggregetionChartCanvas" width="500px" height="220"></canvas>
+            <script>
+                var xValues = [];
+                var yValues = [];
+
+                async function chart(data) {
+                    await getData(data);
+                    var somtimg = new Chart("WaitingCallsAggregetionChartCanvas", {
+                        type: "scatter",
+                        data: {
+                            datasets: [{
+                                pointRadius: 4,
+                                pointBackgroundColor: "rgb(0,0,255)",
+                                data: xyValues
+                            }]
+                        },
+                        options: {
+                            legend: {display: false},
+                            scales: {
+                                xAxes: [{ticks: {min: 0, max: 20}}],
+                                yAxes: [{ticks: {min: 0, max: 28}}],
+                            }
+                        }
+                    });
+                }
+
+                function getData(data) {
+                    for (let i = 0; i < data.time.length; i++) {
+                        xValues.push(data.time[i]);
+                        yValues.push(data.Standby[i]);
+                    }
+                }
+
+
+            </script>
+        </div>
+        <div class="col-6 chart">
+            <p style="text-align: center; font: bold;">Waiting times at 5 minutes intervals</p>
+            <canvas id="WaitingTimeAggregetionChartCanvas" width="500px" height="220"></canvas>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 50px; padding-bottom: 20px;">
+        <link rel="stylesheet" href="./ShowData.css">
+        <!--        <table class="table table-bordered table-dark border" id="SnapShotTable">-->
+        <!--            <thead class="AggregetionTableHead">-->
+        <!--            <tr>-->
+        <!--                <th scope="col" style="width: 500px;">Time</th>-->
+        <!--                <th scope="col" style="width: 475px;">Number of waiting calls <%= totalWaitingCalls %> </th>-->
+        <!--                <th scope="col" style="width: 500px;">Waiting times </th>-->
+        <!--            </tr>-->
+        <!--            </thead>-->
+        <!--            <tbody class="AggregetionTableBody">-->
+        <!--            <tr>-->
+        <!--                <td></td>-->
+        <!--                <td id="totalWaitingCallsValue">0</td>-->
+        <!--                <td></td>-->
+        <!--            </tr>-->
+        <!--            </tbody>-->
+        <!--        </table>-->
+        average waiting time
+        <h2></h2>
+    </div>
+
+    <div>
+        <table id="cityTopicsTable" class="table table-bordered table-dark border">
+            <tr>
+                <th>City</th>
+                <th>Number of calls at each city</th>
+                <th>Topic</th>
+                <th>Number of calls at each topic</th>
+            </tr>
+        </table>
+    </div>
+    <div class="row" style="padding-top: 30px;">
+        <div class="col-6 chart">
+            <p style="text-align: center; font: bold;">Number of calls at each topic.</p>
+            <canvas id="CallsPerTopicChartCanvas" width="500px" height="220"></canvas>
+        </div>
+        <div class="col-6 chart">
+            <p style="text-align: center; font: bold;">Number of calls at each language.</p>
+            <canvas id="CallsPerLanguageChartCanvas" width="500px" height="220"></canvas>
+        </div>
+    </div>
+</div>
+<script>
+    var socket = io.connect();
+
+    function initSocket() {
+        socket.on('avgWaitingTime', function (msg) {
+            // var element = document.getElementById("WaitingTimeAggregetionChartCanvas");
+            // element.innerText = msg;
+            // console.log("avgWaitingTime10Min"+ msg);
+            document.querySelector('h2').innerHTML = msg;
+        })
+
+        socket.on('newdata5min', function (msg) {
+            chart(msg);
+        })
+
+        // socket.on('totalWaitingCalls', function (msg) {
+
+        //     var element = document.getElementById("totalWaitingCallsValue");
+        //     element.innerText = msg;
+        //     xyValues.push({x: 20 , y:msg});
+        //     var element = document.getElementById("WaitingTimeAggregetionChartCanvas");
+        //     element.innerText = 34;
+        //     console.log("socket on newdata");
+        //     console.log("socket on totalWaitingCalls");
+        //
+        //
+        // });
+        // socket.on('newdata', function (msg) {
+        //     var element = document.getElementById(msg.districtId);
+        //     element.innerText = msg.value;
+        //     console.log("socket on newdata");
+        //     // document.querySelector('h1').innerHTML = msg
+        //
+        // })
+
+        // socket.on('diconnectionAmount', function (msg) {
+        //     console.log("disconnection amount:+ msg");
+        // })
+        // function updateWaitingCallsGraph(chart) {
+        //     chart.options.scales.y = {
+        //         type: 'logarithmic'
+        //     };
+        //     chart.update();
+        // }
+
+    }
+</script>
+</body>
 </html>
