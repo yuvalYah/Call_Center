@@ -23,9 +23,11 @@ app.use(express.static("public"));
 app.get('/', (req, res) => res.render('Dashboard'));
 
 
-app
-  .get("/", bigmlm.buildModel)
-  .get("/buildModel", bigmlm.buildModel)
+app.get("/buildModel",async (req,res) => {
+      await bigmlm.buildModel();
+      res.redirect('/');
+
+  })
   .get("/csv", mongodb.wirteMongoToCSV)
   .get('/predictCall/:city/:gender/:age/:prev/:prod/:mood', async (req, res) => {
       var arr = [  req.params.city,
@@ -37,11 +39,31 @@ app
     const value = await bigmlm.predict(arr);
 
     // alert(value);
-    res.send("Prediction result : " + value);
+    // res.redirect('/');
+    // req.session['predictValue'] = value;
+    const html = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="/app.js" type="text/javascript"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <h1 align="center" style="color:rgb(16, 10, 118)">Predic result : ${value}</h1>
+        <body style="background-color:rgb(174, 201, 235);">
+        
+        
+    </body>
+    </html>`;
+
+    res.send(html);
+    // res.sendFile('public/predict.html', {root: __dirname })
+    // res.send("Prediction result : " + value);
     
 
-})
-;
+});
 
 
 

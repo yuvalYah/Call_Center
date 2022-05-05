@@ -17,12 +17,18 @@
         function details(){
            
             //Take the user var
+
             var city = document.getElementById("city").value;
             var gender = document.getElementById("gender").value;
             var age =  document.getElementById("age").value;
             var prev = document.getElementById("prevCalls").value;
             var prod = document.getElementById("product").value;
             var mood = document.getElementById("mood").value
+            
+            if(city == "" || gender =="" || age == "" || prev == "" || prod == "" ){
+                alert("Please enter all details!!");
+                return;
+            }
 
             window.location.href='http:/'+'/'+'localhost:3002/predictCall/'+city+'/'
                 +gender+'/'+age+'/'+prev+'/'+prod+'/'+mood;
@@ -39,10 +45,13 @@
 
     <body class="p-3 mb-2 bg-danger text-white" data-gr-c-s-loaded="true" onload="initSocket()">
 
-        <h2>Predic Conversation Topic</h2>
-        <p>Please enter call details and click "Predict" to predict the type of call.</p>
-        <p>To build a new model, please click "Build Model".</p>
-        <body style="background-color:rgb(245, 211, 220);">
+        <h1 align="center" style="color:rgb(16, 10, 118)">Predic Conversation Topic</h1>
+        <p align="center">Please enter call details and click "Predict" to predict the type of call.</p>
+        <p align="center">To build a new model, please click "Build Model".</p>
+        <h1 align="center">  </h1>
+        <h1 align="center">  </h1>
+        <h1 align="center">  </h1>
+        <body style="background-color:rgb(174, 201, 235);">
         
         
         <form name="bigmlp" class="form-inline " action="/action_page.php" >
@@ -76,6 +85,7 @@
             <button  type="button" onclick="location.href='http:/'+'/'+'localhost:3002/buildModel'" value="Build Model" class="input-group-text" >Build Model</button>
             
 
+            
             
         </form>
 

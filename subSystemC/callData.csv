@@ -1,9 +1,46 @@
 _id,city,gender,age,prevCalls,mood,product,topic
-626be58bb53bc47873e2b0d3,Rehovot,Male,23,0,vacations,internet,joining
-626be595b53bc47873e2b0d4,Rehovot,Male,23,0,vacations,internet,joining
-626be5a9b53bc47873e2b0d5,Rehovot,Male,23,0,vacations,internet,joining
-626be62fb53bc47873e2b0d6,Petah Tikva,Female,23,0,holiday,cableTV,complaint
-626be65eb53bc47873e2b0d7,Rehovot,Female,26,0,holiday,internet,joining
-626be7c06fa74a84d76065c1,Rehovot,Female,26,0,,all,disconnection
-626bebd1229aeaff33ccba20,Rehovot,Female,26,0,holiday,internet,joining
-626bebd1229aeaff33ccba21,Petah Tikva,Female,23,0,holiday,internet,joining
+6272257f003e20920ba9fa05,Rehovot,Female,26,0,holiday,internet,joining
+627227d0eb7260719e066692,Petah Tikva,Female,23,0,holiday,internet,joining
+627227dceb7260719e066693,Rehovot,Female,26,0,holiday,internet,joining
+627227f3eb7260719e066694,Petah Tikva,Female,23,2,holiday,internet,joining
+62724855eb7260719e066695,Rehovot,Female,26,0,holiday,internet,joining
+62724855eb7260719e066696,Rehovot,Male,23,0,holiday,internet,joining
+627294f9c25b84711bc5ff39,Rehovot,Female,26,0,holiday,internet,joining
+627294f9c25b84711bc5ff3a,Petah Tikva,Female,23,0,holiday,internet,joining
+627298d9c25b84711bc5ff5d,Petah Tikva,Female,23,0,holiday,internet,joining
+6272993cc25b84711bc5ff60,Rehovot,Female,26,0,holiday,internet,joining
+62729be0c25b84711bc5ff61,Petah Tikva,Female,23,0,holiday,internet,joining
+62729bfdc25b84711bc5ff62,Rehovot,Male,23,0,holiday,internet,joining
+62729ceec25b84711bc5ff63,Petah Tikva,Female,23,0,holiday,internet,joining
+62729e05c25b84711bc5ff64,tel aviv,Female,42,5,holiday,internet,joining
+6272a13ec25b84711bc5ff65,Petah Tikva,Female,23,0,holiday,internet,joining
+6272a150c25b84711bc5ff66,Petah Tikva,Female,23,0,holiday,internet,joining
+6272a15bc25b84711bc5ff67,Petah Tikva,Female,23,0,holiday,internet,joining
+6272a187c25b84711bc5ff68,Rehovot,Female,26,0,holiday,internet,joining
+6272a19fc25b84711bc5ff69,Rehovot,Female,26,0,holiday,internet,joining
+6272a1dac25b84711bc5ff6a,Rehovot,Male,23,0,holiday,internet,joining
+6272a46fc25b84711bc5ff6b,Rehovot,Male,23,0,holiday,internet,joining
+6272a47cc25b84711bc5ff6c,Petah Tikva,Female,23,0,holiday,internet,joining
+6272a484c25b84711bc5ff6d,Petah Tikva,Female,23,0,holiday,internet,joining
+6272a48ec25b84711bc5ff6e,Rehovot,Male,23,0,holiday,internet,joining
+6272a493c25b84711bc5ff6f,Rehovot,Female,26,0,holiday,internet,joining
+6272a4acc25b84711bc5ff70,Rehovot,Male,23,0,holiday,internet,joining
+6272a4c8c25b84711bc5ff71,Rehovot,Male,23,0,holiday,internet,joining
+6272a711c25b84711bc5ff72,Rehovot,Female,26,0,holiday,internet,joining
+6272a71ac25b84711bc5ff73,Rehovot,Female,26,0,holiday,internet,joining
+6272a742c25b84711bc5ff74,Rehovot,Female,26,0,holiday,internet,joining
+6272a748c25b84711bc5ff75,Rehovot,Male,23,0,holiday,internet,joining
+6272ba38726136a20e31ed13,Rehovot,Male,23,0,holiday,internet,joining
+6272ba38726136a20e31ed12,Petah Tikva,Female,23,0,holiday,internet,joining
+6272ba3b726136a20e31ed15,ariel,Female,55,7,holiday,internet,joining
+6272ba4c726136a20e31ed16,givataiim,Female,30,0,holiday,cellular,complaint
+6272bad822cb53638e0ff9da,givat shmuel,Male,43,5,holiday,internet,joining
+6272bbd17826cc10206e6ef0,or akiva,Male,32,5,holiday,internet,joining
+6272c0c52c0935d2843990b2,Rehovot,Female,26,0,holiday,internet,joining
+6272c0c52c0935d2843990b1,Rehovot,Male,23,0,holiday,internet,joining
+6272c0c82c0935d2843990b4,Rehovot,Female,26,0,holiday,internet,joining
+6272c0cf2c0935d2843990b5,Rehovot,Male,23,0,holiday,internet,joining
+6272c0d02c0935d2843990b6,Petah Tikva,Female,23,0,holiday,internet,joining
+6272c7f62c0935d2843990b7,Rehovot,Male,23,0,holiday,internet,joining
+6272c7f72c0935d2843990b8,Rehovot,Female,26,0,holiday,internet,joining
+6272d8312c0935d2843990b9,yehod,Male,21,9,holiday,internet,joining

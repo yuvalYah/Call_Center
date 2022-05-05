@@ -43,6 +43,7 @@ function startConv() {
         const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit', hour: 'numeric', minute: 'numeric' })
         const [{ value: month }, , { value: day }, , { value: year }, , { value: hour }, , { value: minute }] = dateTimeFormat.formatToParts(date)
         
+        
         var client = rrendClientFromList();
         cStart.innerHTML = "<div id='" + date + "''>" + `${day}-${month}-${year} ,${hour}:${minute}` + "</div>";
         cCity.innerHTML =  "<div id='" + client[3] + "''>" +`${client[3] }` +"</option>";

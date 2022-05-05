@@ -1,93 +1,103 @@
-
-const redis = require("redis");
+const schedule = require("node-schedule");
+const redis = require("ioredis");
 var uuid = require("node-uuid");
+var Standbytime = [[], [], [], [], [], [], [], [], [], []];
 
-const client = redis.createClient();
-
-(async () => {
-
-    client.on('error', (err) => console.log('Redis Client Error', err));
-
-    await client.connect();
-
-    // const value = await client.get('key');
-})();
-
-client.on('connect', function() {
-    console.log('Connected!');
-});
-
-function  sendData (dataToSend){
-    client.set(uuid(), dataToSend).then();
+const conn = {
+    port: 6379,
+    host: "127.0.0.1",
+    db: 0
 };
 
-// function getAllCurrency(){
-//     client.keys("Serial*", function (err, keys) {
-//         var allCurrencyData = [];
-//         var counter = keys.length;
-//         keys.forEach(function (key, i) {
-//             redisClient.hgetall(key, function (err, currencyData) {
-//                 if(err)
-//                     console.log("err");
-//                 console.log(currencyData);
-//                 allCurrencyData.push(currencyData);
-//                 counter--;
-//                 if(counter == 0){
-//                     console.log("hereee");
-//                 }
-//                     // callback(null, allCurrencyData);
-//             })
-//         });
-//     });
-// };
-// getAllCurrency(function(err, allCurrency){
-//     console.log("allCurrency");
-//
-//     console.log(allCurrency);
-// });
+const _redisClient = new redis(conn);
 
-function getData(){
+function _flushAll(callBack) {
+    _redisClient.flushall((err, success) => {
+        if (err) {
+            throw new Error(err);
+        }
+        callBack(success);
+    });
+}
+function sendData (param)  {
+    var myObj = JSON.parse(param);
+    const date = Date.now();
+    const dateTimeFormat = new Intl.DateTimeFormat('en', {hour: 'numeric', minute: 'numeric'})
+    const [{value: hour}, , {value: minute}] = dateTimeFormat.formatToParts(date)
+    var key = hour + ":" + minute
 
-    // const collectionToReturn = [];
-    // return new Promise((result, reject) => {
-    //     client.lrange(whichList, 0, -1, (err, reply) => {
-    //         if (err) {
-    //             reject(err);
-    //         } else {
-    //             result(_copyRedisOutputToCollection(reply, collectionToReturn));
-    //
-    //         }
-    //     }).then();
-    // });
-} ;
+    _redisClient.lpush(key, myObj.totalTime, (err, reply) => {
+        if (err) throw err;
+    })
+    if (myObj.topic == "joining") {
+        _redisClient.lpush("joining", 1, (err, reply) => {
+            if (err) throw err;
+        })
+    } else if (myObj.topic == "service") {
+        _redisClient.lpush("service", 1, (err, reply) => {
+            if (err) throw err;
+        })
+    } else if (myObj.topic == "complaint") {
+        _redisClient.lpush("complaint", 1, (err, reply) => {
+            if (err) throw err;
+        })
+    } else if (myObj.topic == "disconnection") {
+        _redisClient.lpush("disconnection", 1, (err, reply) => {
+            if (err) throw err;
+        })
+    }
+    // redisDb.publish("message", param);
+}
 
-// const _copyRedisOutputToCollection = (output, collection) => {
-//     output.forEach((elem) => {
-//         collection.push(elem);
-//     });
-//     return collection;
-// };
-function blabla(){
-    client.hmset("this:that:a", {"one": 'two', "three": 'four'}).then();
-    client.hmset("this:that:b", {"five": "six", "seven": "eight"}).then();
-    var all_parts = {};
+function avgWaitingTime10Min () {
+    for (let i = 0; i < 10; i++) {
+        const date = Date.now() - (60 * 1000 * i);
+        const dateTimeFormat = new Intl.DateTimeFormat('en', {hour: 'numeric', minute: 'numeric'})
+        const [{value: hour}, , {value: minute}] = dateTimeFormat.formatToParts(date)
+        var key = hour + ":" + minute
+        var st_time = new Promise((resolve, reject) => {
+            _redisClient.lrange(key, 0, -1, (err, reply) => {
+                if (err) throw err;
+                resolve(reply);
+            })
+        });
+        st_time
+            .then(data => {
+                Standbytime[i] = data;
+            })
+            .catch(err => console.log(err));
+    }
+    var totalwaitime = 0
+    var count_calls = 0
+    var count_wtaitingformin = 0;
+    for (var i = 0; i < 10; i++) {
+        for (let j = 0; j < Standbytime[i].length; j++) {
+            if (Standbytime[i].length > 0) {
+                count_calls++;
+                count_wtaitingformin += Number(Standbytime[i][j]);
+            }
+        }
+    }
+    if (count_calls > 0) {
+        totalwaitime = count_wtaitingformin / count_calls;
+    }
+    return (totalwaitime / 60).toFixed(2)
+}
 
-    client.keys("this:that:*", function(err, keys) {
-
-        var count = keys.length;
-        keys.forEach( function(key) {
-            client.hgetall(key, function(err, obj) {
-                all_parts[key] = obj;
-                --count;
-                if (count <= 0) {
-                    console.log(all_parts);
-                } else {
-                    console.log('waiting');
-                }
-            });
+function setFlushingOnRedis(hourToFlush, minToFlush) {
+    const rule = new schedule.RecurrenceRule();
+    rule.hour = hourToFlush;
+    rule.min = minToFlush;
+    schedule.scheduleJob(rule, () => {
+        _flushAll((success) => {
+            // controllers.restart();
+            // socketHandler.getSocket().emit("resetUI");
         });
     });
+}
+module.exports = {sendData,
+    avgWaitingTime10Min,
+    setFlushingOnRedis
+
 };
-blabla();
-module.exports = {sendData, blabla};
 
