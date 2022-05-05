@@ -1,4 +1,5 @@
 var totalWaitingCalls = 0;
+var waitingTime = 0 ;
 
 function initSocket() {
     console.log("init socket")

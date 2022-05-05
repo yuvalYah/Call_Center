@@ -6,6 +6,7 @@ let _consumer;
 const prefix = "e3c3vg85-";
 const totalCallsTopic = `${prefix}default`;
 const callDetailsTopic = `${prefix}new`;
+
 const genMessage = m => new Buffer.alloc(m.length, m);
 
 let _totalWaitingCallsCallback, _callDetailsCallback;
@@ -35,8 +36,12 @@ module.exports = {
             if (message.topic === totalCallsTopic) {
                 console.log(`Total calls\n:${message.value.toString()}`);
                 _totalWaitingCallsCallback(message.value.toString());
+
+
             } else {
-                _callDetailsCallback(JSON.parse(message.value.toString()));
+                console.log(`call details: \n:${message.value.toString()}`);
+                // _callDetailsCallback(message.value);
+                redisHandler.sendData(message.value.toString());
             }
         });
 

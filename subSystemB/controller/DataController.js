@@ -1,5 +1,5 @@
-
 Chart.defaults.global.defaultFontColor = 'white';
+
 
 var colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
     '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
@@ -166,22 +166,6 @@ async function updateLanguageAndCallTopic(msg) {
     });
 }
 
-async function initSocket() {
-    socket = io();
-    socket.on("totalWaitingCalls", (totalCalls) => {
-        console.log("msg from socket client" + totalCalls);
-        //document.getElementById("totalWaitingCallsValue").textContent = totalCalls;
-        // totalWaitingCalls=msg;
-       updateTotalWaiting(totalCalls);
-    });
-    // socket.on("avgWaitTime", (msg) => { updateAvg(msg);});
-    // socket.on("topicLang", (msg) => { updateLanguageAndCallTopic(msg)});
-    // socket.on('cityTopic', (msg) => { updateCityAndCallTopic(msg)});
-    // socket.on("totalWaitingCallsForAggregation", (msg) => {updateAggregationTable(msg.totalWaitList, msg.averageWaitList, msg.timeList);
-    //                                                 updateAggregationChart(msg)});
-    // socket.emit('viewDash',0);
-}
-
 function updateAggregationTable(totalWaitingTable, avgWaitTimeTable, timeTable) {
     let len = totalWaitingTable.length;
     var table = document.getElementById('SnapShotTable');
@@ -247,5 +231,8 @@ function updateCityAndCallTopic(msg) {
             var tC = tr.insertCell(3);
             tC.innerHTML = topicCount[i]
         }
+    }
+    module.exports.getDataFromRedisToApp = () => {
+        return redisHandler.AverageWaitingTime();
     }
 }

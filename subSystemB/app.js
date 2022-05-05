@@ -1,10 +1,10 @@
 // const express = require('express');
 // const app = express();
-// // var server = require('http').createServer(app);
+// var server = require('http').createServer(app);
 // const socketIO = require('socket.io');
 // let _socket;
 // const port = 4000;
-// const kafkaConsumer = require('./controller/KafkaCunsumer');
+// // const kafkaConsumer = require('./controller/KafkaCunsumer');
 // const redisHandler = require("./models/redisHandler");
 //
 // //--------------ejs---------------------
@@ -49,16 +49,19 @@
 //
 //
 
-
 const express = require('express');
 const app = express();
 const http = require('http');
-const server = http.createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
+// const server = http.createServer(app);
+const socketIO = require('socket.io');
+let _socket;
+const port = 4000;
+
+
 const kafkaConsumer = require('./controller/KafkaCunsumer');
 const redisHandler = require("./models/redisHandler");
-let _socket;
+const redisController= require("./controller/redisController");
+const cron = require('node-cron');
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
@@ -67,36 +70,68 @@ const uiData = {totalWaitingCalls: 0};
 app.get('/', (req, res) => {
     res.render('ShowData', uiData);
 });
+//----------Routers-----------//
 app.get('/DataController.js', (req, res) => res.sendFile('controller/DataController.js', { root: __dirname }));
 app.get('/ShowData.css', (req, res) => res.sendFile('views/ShowData.css', { root: __dirname }));
-io.on('connection', (socket) => {
-    console.log('a user connected');
-    _socket=socket;
-    socket.emit("totalWaitingCalls", uiData.totalWaitingCalls);
+
+
+
+cron.schedule('* * * * * *', function () {
+    var avg = redisHandler.avgWaitingTime10Min();
+    io.emit('avgWaitingTime', avg)
 });
+
+cron.schedule('* * * * * *', function () {
+    var topic = redisController.sendEachTopicAmountToServer();
+    io.emit('topic', topic);
+});
+cron.schedule('* * * * *', function () {
+    const date = Date.now();
+    const dateTimeFormat = new Intl.DateTimeFormat('en', { hour: 'numeric',minute: 'numeric' })
+    const [{ value: hour }, ,{ value: minute }] = dateTimeFormat.formatToParts(date)
+    var modlu = Number(minute) % 10;
+    if( modlu == 5 || modlu == 0) {
+        var time = hour + ":" + minute;
+        var data =  controller.Callsevery5minutes(time);
+        io.emit('newdata5min', data)
+    }
+});
+
 (async ()=> {
+
     kafkaConsumer.onTotalWaitingCallsMessage((total)=> {
         uiData.totalWaitingCalls=total;
         console.log("Recieved from kafka: " + total);
-        _socket.emit("totalWaitingCalls", total);
+        // _socket.emit("totalWaitingCalls", total);
+        // _socket.emit("avgWaitingTime10Min", redisController.sendAvgTime10MinToServer());
     });
 
     kafkaConsumer.onCallDetailsMessage((callDetails)=> {
-        redisHandler.sendData(callDetails);
-        console.log("Recieved from Kafka: " + callDetails);
+        redisHandler.sendData(callDetails.value);
     });
 
     await kafkaConsumer.connectToKafka();
     console.log("Kafka connected");
-    await redisHandler.connectRedis();
+    // await redisHandler.connectRedis();
     console.log("Redis connected");
     // const hour = 0;
     // const min = 0;
     // redisHandler.setFlushingOnRedis(hour, min);
 
-    server.listen(4000, () => {
-        console.log('listening on *:4000');
-    });
+
 })();
+
+const server = express()
+    .use(app)
+    .listen(port, () => console.log(`Listening Socket on http://localhost:4000`));
+const io = socketIO(server);
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    // socket.emit("totalWaitingCalls", uiData.totalWaitingCalls);
+    // socket.emit("avgWaitingTime10Min", redisController.sendAvgTime10MinToServer());
+    // socket.emit("diconnectionAmount", redisController.sendDiconnectionAmountToServer());
+});
+
 
 
