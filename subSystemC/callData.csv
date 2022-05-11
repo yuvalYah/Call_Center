@@ -1,46 +1,69 @@
 _id,city,gender,age,prevCalls,mood,product,topic
-6272257f003e20920ba9fa05,Rehovot,Female,26,0,holiday,internet,joining
-627227d0eb7260719e066692,Petah Tikva,Female,23,0,holiday,internet,joining
-627227dceb7260719e066693,Rehovot,Female,26,0,holiday,internet,joining
-627227f3eb7260719e066694,Petah Tikva,Female,23,2,holiday,internet,joining
-62724855eb7260719e066695,Rehovot,Female,26,0,holiday,internet,joining
-62724855eb7260719e066696,Rehovot,Male,23,0,holiday,internet,joining
-627294f9c25b84711bc5ff39,Rehovot,Female,26,0,holiday,internet,joining
-627294f9c25b84711bc5ff3a,Petah Tikva,Female,23,0,holiday,internet,joining
-627298d9c25b84711bc5ff5d,Petah Tikva,Female,23,0,holiday,internet,joining
-6272993cc25b84711bc5ff60,Rehovot,Female,26,0,holiday,internet,joining
-62729be0c25b84711bc5ff61,Petah Tikva,Female,23,0,holiday,internet,joining
-62729bfdc25b84711bc5ff62,Rehovot,Male,23,0,holiday,internet,joining
-62729ceec25b84711bc5ff63,Petah Tikva,Female,23,0,holiday,internet,joining
-62729e05c25b84711bc5ff64,tel aviv,Female,42,5,holiday,internet,joining
-6272a13ec25b84711bc5ff65,Petah Tikva,Female,23,0,holiday,internet,joining
-6272a150c25b84711bc5ff66,Petah Tikva,Female,23,0,holiday,internet,joining
-6272a15bc25b84711bc5ff67,Petah Tikva,Female,23,0,holiday,internet,joining
-6272a187c25b84711bc5ff68,Rehovot,Female,26,0,holiday,internet,joining
-6272a19fc25b84711bc5ff69,Rehovot,Female,26,0,holiday,internet,joining
-6272a1dac25b84711bc5ff6a,Rehovot,Male,23,0,holiday,internet,joining
-6272a46fc25b84711bc5ff6b,Rehovot,Male,23,0,holiday,internet,joining
-6272a47cc25b84711bc5ff6c,Petah Tikva,Female,23,0,holiday,internet,joining
-6272a484c25b84711bc5ff6d,Petah Tikva,Female,23,0,holiday,internet,joining
-6272a48ec25b84711bc5ff6e,Rehovot,Male,23,0,holiday,internet,joining
-6272a493c25b84711bc5ff6f,Rehovot,Female,26,0,holiday,internet,joining
-6272a4acc25b84711bc5ff70,Rehovot,Male,23,0,holiday,internet,joining
-6272a4c8c25b84711bc5ff71,Rehovot,Male,23,0,holiday,internet,joining
-6272a711c25b84711bc5ff72,Rehovot,Female,26,0,holiday,internet,joining
-6272a71ac25b84711bc5ff73,Rehovot,Female,26,0,holiday,internet,joining
-6272a742c25b84711bc5ff74,Rehovot,Female,26,0,holiday,internet,joining
-6272a748c25b84711bc5ff75,Rehovot,Male,23,0,holiday,internet,joining
-6272ba38726136a20e31ed13,Rehovot,Male,23,0,holiday,internet,joining
-6272ba38726136a20e31ed12,Petah Tikva,Female,23,0,holiday,internet,joining
-6272ba3b726136a20e31ed15,ariel,Female,55,7,holiday,internet,joining
-6272ba4c726136a20e31ed16,givataiim,Female,30,0,holiday,cellular,complaint
-6272bad822cb53638e0ff9da,givat shmuel,Male,43,5,holiday,internet,joining
-6272bbd17826cc10206e6ef0,or akiva,Male,32,5,holiday,internet,joining
-6272c0c52c0935d2843990b2,Rehovot,Female,26,0,holiday,internet,joining
-6272c0c52c0935d2843990b1,Rehovot,Male,23,0,holiday,internet,joining
-6272c0c82c0935d2843990b4,Rehovot,Female,26,0,holiday,internet,joining
-6272c0cf2c0935d2843990b5,Rehovot,Male,23,0,holiday,internet,joining
-6272c0d02c0935d2843990b6,Petah Tikva,Female,23,0,holiday,internet,joining
-6272c7f62c0935d2843990b7,Rehovot,Male,23,0,holiday,internet,joining
-6272c7f72c0935d2843990b8,Rehovot,Female,26,0,holiday,internet,joining
-6272d8312c0935d2843990b9,yehod,Male,21,9,holiday,internet,joining
+627425623f66ebd6a6bc751a,yehod,Female,22,3,holiday,internet,complaint
+627425913f66ebd6a6bc751b,ramat gan,Male,37,3,regular day,cellular,complaint
+627425b23f66ebd6a6bc751c,ramat gan,Female,32,3,regular day,cableTV,complaint
+627425c43f66ebd6a6bc751d,ramat gan,Female,35,3,regular day,internet,joining
+627425c93f66ebd6a6bc751e,givataiim,Male,28,1,vacations,cellular,service
+627425df3f66ebd6a6bc751f,givat shmuel,Female,61,4,vacations,internet,service
+627425e13f66ebd6a6bc7520,Petah Tikva,Female,23,2,vacations,internet,joining
+627425e93f66ebd6a6bc7521,givat shmuel,Male,53,6,vacations,internet,disconnection
+627425f83f66ebd6a6bc7522,ramat gan,Female,40,10,vacations,internet,complaint
+627425fb3f66ebd6a6bc7523,yehod,Female,22,3,vacations,cableTV,joining
+627426033f66ebd6a6bc7524,yehod,Male,21,9,holiday,internet,disconnection
+627426303f66ebd6a6bc7525,ramat gan,Female,35,3,holiday,all,disconnection
+627426373f66ebd6a6bc7526,yehod,Male,21,9,holiday,cableTV,joining
+627426503f66ebd6a6bc7527,ramat gan,Female,35,3,holiday,all,joining
+627426533f66ebd6a6bc7528,ramat gan,Female,40,10,regular day,internet,complaint
+627426643f66ebd6a6bc7529,givataiim,Male,23,2,regular day,cableTV,service
+6274267c3f66ebd6a6bc752a,yehod,Male,21,9,regular day,cableTV,complaint
+627426853f66ebd6a6bc752b,tel aviv,Male,62,1,regular day,cableTV,complaint
+6274268a3f66ebd6a6bc752c,ramat gan,Female,32,3,regular day,cableTV,service
+627426a63f66ebd6a6bc752d,tel aviv,Male,62,1,regular day,cableTV,complaint
+627426b73f66ebd6a6bc752e,givataiim,Male,23,2,regular day,internet,service
+627427433f66ebd6a6bc752f,or akiva,Male,32,5,regular day,cableTV,service
+627427463f66ebd6a6bc7530,givat shmuel,Male,33,2,regular day,internet,service
+627427483f66ebd6a6bc7531,Petah Tikva,Female,23,2,regular day,internet,service
+6274274a3f66ebd6a6bc7532,givat shmuel,Male,33,2,regular day,internet,service
+6274274e3f66ebd6a6bc7533,Rehovot,Female,26,0,regular day,cableTV,disconnection
+627434603f66ebd6a6bc7534,tel aviv,Male,62,1,regular day,internet,complaint
+627434673f66ebd6a6bc7535,givataiim,Male,28,1,regular day,internet,complaint
+627434743f66ebd6a6bc7536,Rehovot,Female,26,0,regular day,cableTV,disconnection
+627434843f66ebd6a6bc7538,ramat gan,Female,35,3,regular day,internet,disconnection
+627434ff3f66ebd6a6bc7539,ariel,Female,21,8,vacations,internet,service
+627434ff3f66ebd6a6bc753a,Petah Tikva,Female,23,2,regular day,internet,service
+627435013f66ebd6a6bc753b,givat shmuel,Male,43,5,vacations,internet,disconnection
+627435033f66ebd6a6bc753c,ramat gan,Male,37,3,vacations,internet,service
+627435d03f66ebd6a6bc753d,ariel,Male,29,8,vacations,internet,joining
+6274365f3f66ebd6a6bc753e,ariel,Female,21,8,vacations,internet,joining
+627436623f66ebd6a6bc753f,tel aviv,Female,42,5,vacations,internet,joining
+627436623f66ebd6a6bc7540,givat shmuel,Male,33,2,vacations,internet,joining
+627436723f66ebd6a6bc7541,ariel,Female,21,8,vacations,internet,joining
+627436723f66ebd6a6bc7542,ramat gan,Female,35,3,vacations,internet,joining
+627436793f66ebd6a6bc7543,yehod,Male,21,9,vacations,cableTV,service
+6274367d3f66ebd6a6bc7544,ramat gan,Female,32,3,vacations,cableTV,disconnection
+627436bb3f66ebd6a6bc7545,ramat gan,Female,32,3,vacations,cableTV,complaint
+627436be3f66ebd6a6bc7546,givat shmuel,Male,43,5,holiday,internet,complaint
+627436cc3f66ebd6a6bc7547,or akiva,Male,32,5,holiday,internet,joining
+627436f03f66ebd6a6bc7548,ariel,Female,55,7,holiday,internet,joining
+627436f73f66ebd6a6bc7549,givataiim,Male,28,1,holiday,all,service
+627436fa3f66ebd6a6bc754a,yehod,Female,29,2,holiday,internet,service
+6274383b3f66ebd6a6bc754b,or akiva,Male,31,5,holiday,internet,disconnection
+627438413f66ebd6a6bc754c,ariel,Male,29,8,holiday,all,complaint
+627438583f66ebd6a6bc754d,ramat gan,Male,37,3,holiday,internet,service
+627438633f66ebd6a6bc754e,tel aviv,Male,62,1,holiday,internet,service
+627438ca3f66ebd6a6bc754f,Rehovot,Female,26,0,holiday,internet,service
+627438cf3f66ebd6a6bc7550,Rehovot,Male,23,0,holiday,internet,joining
+627438d33f66ebd6a6bc7552,Petah Tikva,Female,23,0,holiday,internet,complaint
+627438d73f66ebd6a6bc7553,Rehovot,Male,23,0,holiday,internet,service
+627438eb3f66ebd6a6bc7554,or akiva,Male,32,5,holiday,internet,service
+627439273f66ebd6a6bc7555,yehod,Male,21,9,holiday,internet,joining
+6274c4c83fe2248b2121b3bc,Rehovot,Female,26,0,holiday,internet,joining
+6274c4da3fe2248b2121b3bd,Rehovot,Male,23,0,holiday,all,joining
+6274c4db3fe2248b2121b3be,Petah Tikva,Female,23,0,holiday,internet,joining
+6274c4de3fe2248b2121b3c2,Petah Tikva,Female,23,0,holiday,internet,joining
+6274c4ee3fe2248b2121b3c3,Rehovot,Female,26,0,holiday,internet,service
+6274c5193fe2248b2121b3c6,ramat gan,Female,40,10,holiday,internet,joining
+6274c5643fe2248b2121b3c7,givat shmuel,Female,61,4,holiday,cellular,complaint
+6274c5ae3fe2248b2121b3c8,givat shmuel,Male,43,5,holiday,cableTV,service
+6274c5b43fe2248b2121b3c9,tel aviv,Male,62,1,holiday,internet,joining
+6274c92c3fe2248b2121b3ca,tel aviv,Female,42,5,vacations,cableTV,joining
